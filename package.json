@@ -1,0 +1,18 @@
+{
+  "name": "bilibili-live-danmu",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "bilibili-live": "~1.0.9",
+    "electron": "~1.8.2"
+  },
+  "scripts": {
+    "start": "electron .",
+    "build—mac": "electron-packager . bilibili-live-danmu --platform darwin --out ./OutApp --version 1.0.0 --overwrite --icon=./app/icon/icon.ico"
+  },
+  "devDependencies": {
+    "electron-packager": "^11.0.1"
+  },
+  "author": "GanymedeNil"
+}

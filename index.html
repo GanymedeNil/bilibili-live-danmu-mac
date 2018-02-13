@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'>
+    <title>bilibili-live-danmu</title>
+    <style>
+        html {
+            height: 100%;
+            width: 100%;
+        }
+        body {
+            height: 100%;
+            width: 100%;
+            -webkit-app-region: drag;
+            -webkit-user-select: none;
+            margin: 0;
+            opacity:0.5;
+
+        }
+        #main {
+            height: 100%;
+            width: 100%;
+            background-color: black;
+            color: #ffffff;
+            position: relative;
+            overflow-y: scroll;
+
+        }
+        #main::-webkit-scrollbar {display:none}
+    </style>
+</head>
+<body>
+<div id='main'>
+</div>
+<script>
+    let electron = require('electron');
+    const {ipcRenderer} = electron;
+    ipcRenderer.on('danmaku.connect',(e,msg)=>{
+        msgInset(msg);
+    });
+    ipcRenderer.on('danmaku.connected',(e,msg)=>{
+        msgInset(msg);
+    });
+    ipcRenderer.on('danmaku.message',(e,msg)=>{
+        switch (msg["type"]){
+            case "comment":
+                msgInset(msg["user"]["name"]+" say:"+msg["comment"]);
+                break;
+            case "gift":
+                msgInset(msg["user"]["name"]+"赠送"+msg["gift"]["count"]+"个"+msg["gift"]["name"]+",总价值"+msg["gift"]["price"]*msg["gift"]["count"]);
+                break;
+            case "welcome":
+                msgInset("欢迎"+msg["user"]["name"]+"进入直播间");
+                break;
+        }
+
+    });
+    ipcRenderer.on('danmaku.close',(e,msg)=>{
+        msgInset(msg);
+    });
+    ipcRenderer.on('danmaku.error',(e,msg)=>{
+        msgInset(msg);
+    });
+    ipcRenderer.on('danmaku.newFans',(e,msg)=>{
+        //console.log(msg);
+    });
+    ipcRenderer.on('danmaku.info',(e,msg)=>{
+        //console.log(msg);
+    });
+
+    function msgInset(msg) {
+        let content = document.getElementById('main');
+        let a = document.createElement('a');
+        let itemText = document.createTextNode(msg);
+        a.appendChild(itemText);
+        let br = document.createElement('br');
+        a.appendChild(br);
+        content.appendChild(a);
+        content.scrollTop=content.scrollHeight;
+    }
+
+</script>
+</body>
+</html>
