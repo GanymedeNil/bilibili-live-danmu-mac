@@ -8,6 +8,6 @@
 
 ## 使用
 
-mac用户直接下载即可 [下载](https://github.com/GanymedeNil/bilibili_live-danmu/releases)
+mac用户直接下载即可 [下载](https://github.com/GanymedeNil/bilibili-live-danmu-mac/releases)
 
 其他系统用户请自行打包使用
