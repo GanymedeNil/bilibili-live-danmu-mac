@@ -9,7 +9,10 @@
   },
   "scripts": {
     "start": "electron .",
-    "build—mac": "electron-packager . bilibili-live-danmu --platform darwin --out ./OutApp --version 1.0.0 --overwrite --icon=./app/icon/icon.ico"
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --version 1.0.0 --icon=app/icon/icon.icns --prune=true --out=release-builds",
+    "package-win": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --version 1.0.0 --icon=app/icon/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"bilibili-live-danmu\"",
+    "package-linux" : "electron-packager . --overwrite --platform=linux --arch=x64 --version 1.0.0 --icon=app/icon/icon.png --prune=true --out=release-builds"
+
   },
   "devDependencies": {
     "electron-packager": "^11.0.1"
