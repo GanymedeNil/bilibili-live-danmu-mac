@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Config</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <form class="form-inline">
+        <div class="form-group row">
+            <label for="roomid" class="col-form-label col-sm-2">房间ID</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="roomid" placeholder="">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary col-sm-2">确定</button>
+    </form>
+</div>
+<script>
+    const electron = require('electron');
+    const {ipcRenderer} = electron;
+    document.querySelector('form').addEventListener('submit', submitForm);
+    function submitForm(e){
+        e.preventDefault();
+        const roomid = document.querySelector('#roomid').value;
+        ipcRenderer.send('bilibili:add', roomid);
+    }
+</script>
+</body>
+</html>
