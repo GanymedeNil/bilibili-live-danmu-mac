@@ -15,7 +15,7 @@ let BrowserWindow = electron.BrowserWindow;
 let mainWindow;
 let appWindow;
 
-// 当软件触发 ready 事件之后，创建浏览器窗口ßß
+// 当软件触发 ready 事件之后，创建浏览器窗口
 app.on('ready', function() {
     appWindow = new BrowserWindow({
         width: 300,
@@ -27,13 +27,13 @@ app.on('ready', function() {
         protocol: 'file:',
         slashes:true
     }));
-    // Handle garbage collection
     appWindow.on('close', function(){
         appWindow = null;
     });
-    //appWindow.toggleDevTools();
 });
-
+app.on('window-all-closed', () => {
+    app.quit();
+});
 ipcMain.on('bilibili:add',function (e,roomid) {
     createAppWindow(roomid);
     appWindow.close();
@@ -54,9 +54,7 @@ function createAppWindow(roomid){
 
     });
     bilibliLive(roomid,mainWindow);
-    //mainWindow.toggleDevTools();
 
-    // 加载 example 目录下的index.html
     mainWindow.loadURL(url.format({
         pathname: path.join(__dirname, 'index.html'),
         protocol: 'file:',
