@@ -5,7 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "bilibili-live": "~1.0.9",
-    "electron": "~1.8.2"
+    "electron": "~1.8.4"
   },
   "scripts": {
     "start": "electron .",
@@ -14,7 +14,7 @@
     "package-linux": "electron-packager . --overwrite --platform=linux --arch=x64 --version 1.0.0 --icon=app/icon/icon.png --prune=true --out=release-builds"
   },
   "devDependencies": {
-    "electron-packager": "^11.0.1"
+    "electron-packager": "^11.2.0"
   },
   "author": "GanymedeNil"
 }
